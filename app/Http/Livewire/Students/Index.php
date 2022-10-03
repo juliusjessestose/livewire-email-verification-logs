@@ -4,11 +4,28 @@ namespace App\Http\Livewire\Students;
 
 use App\Models\Student;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class Index extends Component
 {
-    public function loadStudents() {
-        $students = Student::orderBy('name')->get();
+    public $search, $department = 'all', $year_level = 'all';
+    use WithPagination;
+
+    protected $paginationTheme = 'bootstrap';
+
+    public function loadStudents()
+     {
+        $query = Student::orderBy('name')
+            ->search($this->search);
+
+        if ($this->department != 'all') {
+            $query->where('department', $this->department);
+        }
+        if ($this->year_level != 'all') {
+            $query->where('year_level', $this->year_level);
+        }
+
+        $students = $query->paginate(2);
 
         return compact('students');
     }

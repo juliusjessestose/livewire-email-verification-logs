@@ -1,4 +1,29 @@
 <div>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <select class="form-select" wire:model.lazy="department">
+                    <option value="all">All</option>
+                    <option value="College of Arts Sciences & Technology">College of Arts Sciences & Technology</option>
+                    <option value="College of Criminal Justice">College of Criminal Justice</option>
+                    <option value="College of Education">College of Education</option>
+                    <option value="College of Accountancy Business Management">College of Accountancy Business Management</option>
+                </select>
+            </div>
+            <div class="col">
+                <select class="form-select" wire:model.lazy="year_level">
+                    <option value="all">All</option>
+                    <option value="1">1st Year</option>
+                    <option value="2">2nd Year</option>
+                    <option value="3">3rd Year</option>
+                    <option value="4">4th Year</option>
+                </select>
+            </div>
+            <div class="col">
+                <input type="text" class="form-control" placeholder="Search" wire:model.lazy="search">
+            </div>
+        </div>
+    </div>
     <table class="table table-striped">
         <thead class="table table-striped bg-info">
             <tr>
@@ -33,5 +58,6 @@
             @endforeach
         </tbody>
     </table>
+    {{$students->links() }}
 </div>
 
